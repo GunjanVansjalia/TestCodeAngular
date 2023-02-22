@@ -1,0 +1,256 @@
+<div class="card my-3 main-content">
+  <div class="row">
+    <div class="col-12">
+      <app-title [titletext]="'Contact Infromation'"></app-title>
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-flex justify-content-center">
+      <div class="card card-width m-3">
+        <h5 class="card-header">
+          Please fill in the following required information
+        </h5>
+        <div class="card-body">
+          <mat-horizontal-stepper
+            [linear]="isLinear"
+            #stepper="matHorizontalStepper"
+          >
+            <mat-step [stepControl]="registerForm">
+              <form [formGroup]="registerForm">
+                <ng-template matStepLabel>Register</ng-template>
+                <div class="row">
+                  <div class="col-auto mb-3">
+                    <label class="form-label">First Name: *</label>
+                    <input
+                      type="text"
+                      formControlName="firstName"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid': submitted && f.firstName.errors
+                      }"
+                    />
+                    <div
+                      *ngIf="submitted && f.firstName.errors"
+                      class="invalid-feedback"
+                    >
+                      <div *ngIf="f.firstName.errors.required">
+                        First Name is required
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-auto mb-3">
+                    <label class="form-label">Last Name: *</label>
+                    <input
+                      type="text"
+                      formControlName="lastName"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid': submitted && f.lastName.errors
+                      }"
+                    />
+                    <div
+                      *ngIf="submitted && f.lastName.errors"
+                      class="invalid-feedback"
+                    >
+                      <div *ngIf="f.lastName.errors.required">
+                        Last Name is required
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col mb-3">
+                    <label class="form-label">State: *</label>
+                    <select
+                      formControlName="state"
+                      class="form-select"
+                      [ngClass]="{ 'is-invalid': submitted && f.state.errors }"
+                    >
+                      <option value=""></option>
+                      <option value="guj">Gujarat</option>
+                      <option value="mh">Maharastra</option>
+                      <option value="mp">MadhyaPradesh</option>
+                      <option value="rj">Rajasthan</option>
+                    </select>
+                    <div
+                      *ngIf="submitted && f.state.errors"
+                      class="invalid-feedback"
+                    >
+                      <div *ngIf="f.state.errors.required">
+                        state is required
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-auto">
+                    <span>Please provide your email address.</span><br />
+                    <span
+                      >All meeting correspondence will be sent via email.</span
+                    >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-auto mb-3">
+                    <label class="form-label">Email: *</label>
+                    <input
+                      type="text"
+                      formControlName="email"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                    />
+                    <div
+                      *ngIf="submitted && f.email.errors"
+                      class="invalid-feedback"
+                    >
+                      <div *ngIf="f.email.errors.required">
+                        Email is required
+                      </div>
+                      <div *ngIf="f.email.errors.email">
+                        Email must be a valid email address
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-auto mb-3">
+                    <label class="form-label">ConfrimEmail: *</label>
+                    <input
+                      type="text"
+                      formControlName="confirmemail"
+                      class="form-control"
+                      [ngClass]="{
+                        'is-invalid': submitted && f.confirmemail.errors
+                      }"
+                    />
+                    <div
+                      *ngIf="submitted && f.confirmemail.errors"
+                      class="invalid-feedback"
+                    >
+                      <div *ngIf="f.confirmemail.errors.required">
+                        Email is required
+                      </div>
+                      <div *ngIf="f.confirmemail.errors.email">
+                        Email must be a valid email address
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-check mb-3">
+                  <input
+                    type="checkbox"
+                    formControlName="subscribenotification"
+                    id="subscribenotification"
+                    class="form-check-input"
+                    [ngClass]="{
+                      'is-invalid': submitted && f.subscribenotification.errors
+                    }"
+                  />
+                  <label for="subscribenotification" class="form-check-label"
+                    >Subscribe to Newsletter</label
+                  >
+                </div>
+                <div>
+                  <button
+                    mat-button
+                    class="btn btn-primary mx-3"
+                    matStepperNext
+                    (click)="onSubmit()"
+                  >
+                    Next
+                  </button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="previewForm">
+              <form [formGroup]="previewForm">
+                <ng-template matStepLabel>Preview</ng-template>
+                <div class="row">
+                  <div class="col-auto mb-3">
+                    <label class="form-label"
+                      >First Name: {{ f.firstName.value }}</label
+                    >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-auto mb-3">
+                    <label class="form-label"
+                      >Last Name: {{ f.lastName.value }}</label
+                    >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col mb-3">
+                    <label class="form-label">State: {{ f.state.value }}</label>
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-auto">
+                    <span>Please provide your email address.</span><br />
+                    <span
+                      >All meeting correspondence will be sent via email.</span
+                    >
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-auto mb-3">
+                    <label class="form-label">Email: {{ f.email.value }}</label>
+                  </div>
+                </div>
+                <div>
+                  <button
+                    mat-button
+                    class="btn btn-secondary"
+                    matStepperPrevious
+                  >
+                    Back
+                  </button>
+                  <button
+                    mat-button
+                    class="btn btn-primary mx-3"
+                    matStepperNext
+                    (click)="onSave()"
+                  >
+                    Next
+                  </button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="completeForm">
+              <form [formGroup]="completeForm">
+                <ng-template matStepLabel>Complete</ng-template>
+                <h1>Thank you for registering!</h1>
+                <span
+                  >You should receive a confrimation email momentarily
+                  containing additional details.</span
+                >
+                <div>
+                  <button
+                    mat-button
+                    class="btn btn-secondary"
+                    matStepperPrevious
+                  >
+                    Back
+                  </button>
+                  <button
+                    mat-button
+                    class="btn btn-primary"
+                    (click)="stepper.reset()"
+                  >
+                    Reset
+                  </button>
+                </div>
+              </form>
+            </mat-step>
+          </mat-horizontal-stepper>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

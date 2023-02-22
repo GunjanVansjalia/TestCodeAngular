@@ -1,0 +1,45 @@
+<div class="card my-3 main-content">
+  <div class="row">
+    <div class="col-12">
+      <app-title [titletext]="'Login'"></app-title>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="d-flex justify-content-center">
+      <div class="card card-width">
+        <div class="row mx-3 my-3">
+          <div class="col-md-12">
+            <span
+              >Please enter the case sensitive password from your official
+              invitation.</span
+            >
+          </div>
+        </div>
+        <div class="row mx-3 my-3">
+          <div class="col-auto mb-3">
+            <label class="form-label">Password: *</label>
+            <input
+              type="password"
+              [formControl]="password"
+              class="form-control"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-11 mb-3 d-flex justify-content-end">
+            <button class="btn btn-primary" (click)="loginclick()">
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <app-footer></app-footer>
+  </div>
+</div>
+<app-footer></app-footer>
